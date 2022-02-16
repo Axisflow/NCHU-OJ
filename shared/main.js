@@ -11,7 +11,7 @@ function importObject() { // ref: www.w3schools.com/howto/howto_html_include.asp
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4) {
-                    if (this.status == 200) { elmnt.innerHTML = this.responseText; }
+                    if (this.status == 200) { elmnt.innerHTML += this.responseText; }
                     if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
                     /* Remove the attribute, and call this function once more: */
                     elmnt.removeAttribute("resource");
@@ -26,4 +26,6 @@ function importObject() { // ref: www.w3schools.com/howto/howto_html_include.asp
     }
 }
 
-document.getElementsByTagName('body')[0].addEventListener("load", function (e) { importObject(); });
+window.addEventListener("load", function (e) {
+    importObject();
+});
