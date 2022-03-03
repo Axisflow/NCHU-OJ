@@ -1,3 +1,8 @@
+var coverStack = [];
+function openCover(par) {
+    par.style.visibility = 'visible';
+}
+
 function importObject() { // ref: www.w3schools.com/howto/howto_html_include.asp
     var z, i, elmnt, file, xhttp;
     /* Loop through a collection of all HTML elements: */
