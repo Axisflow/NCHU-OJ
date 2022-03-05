@@ -5,6 +5,14 @@
     src: url(fonts/jf-openhuninn-1.1.ttf) format('truetype');
 }
 
+html {
+    font-family: Huninn;
+}
+
+p {
+    margin: 0;
+}
+
 vr {
     height: 100%;
     border-color: gray;
@@ -13,6 +21,22 @@ vr {
     margin: 0 1vw 0 1vw;
 }
 
-html {
-    font-family: Huninn;
+button {
+    color: rgb(255 255 255);
+    background-color: rgb(72,61,139);
+    border-radius: 1vmin;
+    border-style: none;
+    padding: 10px;
 }
+
+input {
+    background-color: inherit;
+    border-style: none none solid none;
+    font-size: inherit;
+    color: inherit;
+}
+
+a {
+    color: rgb(130 121 189);
+}
+
