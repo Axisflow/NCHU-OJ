@@ -27,6 +27,7 @@ button {
     border-radius: 1vmin;
     border-style: none;
     padding: 10px;
+    cursor: pointer;
 }
 
 input {

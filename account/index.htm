@@ -12,6 +12,8 @@
             width: 100%;
         }
 
+
+
     </style>
 </head>
 <body style="color:white; display: flex; flex-direction: column; align-items: center; justify-content: space-between; font-family: Huninn; margin: 0; height: 100%; background-color: rgb(32 32 32); background-image: url(../bg_a.jpg); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover; ">
@@ -20,20 +22,69 @@
     <nav style="width: 100%;"></nav>
 
     <main style="height: 80%; width: 80%; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
-        <div id="portalForm" style="color:white; height: 90vmin; width: 90vmin; background-image: url(blur.svg); background-color: rgba(60,60,60,0.85); border-radius: 1vmin; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <p style="font-size: 7.5vmin; margin:5vmin;">登入</p>
+        <div id="portalForm" style="position:relative;left:0;opacity:1;color:white; height: 75vmin; width: 75vmin; background-color: rgba(60,60,60,0.85); border-radius: 1vmin; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <p id="portalTitle" style="font-size: 7.5vmin; margin:5vmin;">登入</p>
             <div style="font-size: 2.5vmin; height: 50%; width: 75%; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; background-color: rgba(30,30,30,0.25); border-radius:2vmin;">
-                <p><label for="accountName">帳號：　</label><input id="accountName" style="width:50%;" type="text" placeholder="Identity Number/Username" /></p>
+                <p><label for="accountName">帳號：　</label><input id="accountName" style="width:50%;" type="text" placeholder="ID No./Username" /></p>
                 <p><label for="accountPassword">密碼：　</label><input id="accountPassword" style="width:50%;" type="password" placeholder="Password" /></p>
-                <p><input id="accountRemember" type="checkbox" /><label for="accountRemember">記住此帳號以便下次登入</label></p>
+                <p id="portalCheckPassword" style="display:none;"><label for="checkPassword">確認密碼：　</label><input id="checkPassword" style="width:50%;" type="password" placeholder="Confirm Password" /></p>
+                <p id="portalRemember"><input id="accountRemember" type="checkbox" /><label for="accountRemember">記住此帳號以便下次登入</label></p>
             </div>
-            <p style="font-size: 2.5vmin; margin: 5vmin;"><button style="font-size:inherit;">Login</button>　<a onclick="" style="text-decoration-line:underline;">Signup</a></p>
+            <p style="font-size: 2.5vmin; margin: 5vmin;"><button id="portalExecute" style="font-size:inherit;">Login</button>　<a id="portalChange" onclick="changeForm()" style="text-decoration-line:underline; cursor:pointer;">Signup</a></p>
         </div>
         <script type="text/javascript">
+            var formState = 0; //0 - Login , 1 - Signup
             function changeForm() {
-                for (var i = 0; i < 10000; i++) {
+                var portalForm = document.getElementById('portalForm');
 
-                }
+                var range = 25.0;
+                var nowLeft = 0.0;
+                var i;
+                //
+                i = 1;
+                var tmpTimerB = setInterval(function () {
+                    if (i <= range) {
+                        portalForm.style.opacity = 1 - i / range;
+                        nowLeft = -100*i / range;
+                        portalForm.style.left = nowLeft.toString() + "px";
+                    } else {
+                        clearInterval(tmpTimerB);
+
+                        if (formState) {
+                            formState = 0;
+                            document.getElementById('portalTitle').innerHTML = "登入";
+                            document.getElementById('portalCheckPassword').style.display = "none";
+                            document.getElementById('portalRemember').style.display = "block";
+                            document.getElementById('portalExecute').innerHTML = "Login";
+                            document.getElementById('portalChange').innerHTML = "Signup";
+                        } else {
+                            formState = 1;
+                            document.getElementById('portalTitle').innerHTML = "註冊";
+                            document.getElementById('portalCheckPassword').style.display = "block";
+                            document.getElementById('portalRemember').style.display = "none";
+                            document.getElementById('portalExecute').innerHTML = "Signup";
+                            document.getElementById('portalChange').innerHTML = "Login";
+                        }
+
+                        nowLeft = 100;
+                        //
+                        cont = 0;
+                        i = 1;
+                        var tmpTimerA = setInterval(function () {
+                            if (i <= range) {
+                                portalForm.style.opacity = i / range;
+                                nowLeft = 100 - 100 * i / range;
+                                portalForm.style.left = nowLeft.toString() + "px";
+                            } else {
+                                clearInterval(tmpTimerA);
+                            }
+                            i++;
+                        }, 1);
+                        //
+                    }
+                    i++;
+                }, 1);
+                //
             }
         </script>
     </main>
